@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "3b9431c8-e8b6-4552-a457-b1704c0e97fa": {
+      "ProjectGuid": "3b9431c8-e8b6-4552-a457-b1704c0e97fa",
+      "DisplayName": "Congress",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "8840b324-9415-49d3-b35f-b32932aa6eb7": {
+      "ProjectGuid": "8840b324-9415-49d3-b35f-b32932aa6eb7",
+      "DisplayName": "CongressWeb",
+      "ColorIndex": 1
+    },
+    "4ff8bee1-b18c-4fa1-b8c6-58f8000a7b88": {
+      "ProjectGuid": "4ff8bee1-b18c-4fa1-b8c6-58f8000a7b88",
+      "DisplayName": "CongressApp",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}
