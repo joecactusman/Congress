@@ -1,4 +1,4 @@
-﻿const uri = 'api/members/fuckoff';
+﻿const uri = 'api/members/MemberData';
 let todos = [];
 
 function getItems() {
@@ -20,9 +20,9 @@ function _displayItems(data) {
     hr.insertCell(2).innerHTML = 'District';
     data.forEach(item => {
         let tr = table.insertRow();
-        tr.insertCell(0).innerHTML = item.Name;
-        tr.insertCell(1).innerHTML = item.State;
-        tr.insertCell(2).innerHTML = item.District;
+        tr.insertCell(0).innerHTML = item.first_name + ' ' + item.last_name;
+        tr.insertCell(1).innerHTML = item.state;
+        tr.insertCell(2).innerHTML = item.district;
     });
     tBody.appendChild(table);
     todos = data;
