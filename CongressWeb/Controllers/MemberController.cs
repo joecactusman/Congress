@@ -21,18 +21,25 @@ namespace CongressWeb.Controllers
         //}
 
         [HttpGet("fuckoff")]
-        public List<string> GoFuckYourself()
+        public string GoFuckYourself()
         {
             return GetHTML();
         }
-        public List<string> GetHTML()
+
+        public class Member
         {
-            var html = new List<object> { 
-                new { Name = "Ron Johnson", State = "Wisconsin", District = "8" },
-                new { Name = "Pauli Smally", State = "Your Mom", District = "69" },
-                new { Name = "Yusef Poosef", State = "Asia", District = "12" }
+            public string Name { get; set; }
+            public string State { get; set; }
+            public string District { get; set; }
+        }
+        public string GetHTML()
+        {
+            var members = new List<Member> {
+               new Member {Name = "Ron Johnson",State = "Wisconsin", District = "8"},
+                new Member {Name = "Pauli Smally",State = "Your Mom", District =  "69"},
+                new Member{ Name  = "Yusef Poosef", State =  "Asia", District = "12"}
             };
-            return html.Select(n => JsonConvert.SerializeObject(n)).ToList();
+            return JsonConvert.SerializeObject(members);
         }
     }
 }
