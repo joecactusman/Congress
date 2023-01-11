@@ -22,6 +22,27 @@ function getItems() {
     pBody.appendChild(button);
 }
 
+function getSenateItems() {
+    fetch(uri + '/SenateMemberData')
+        .then(response => response.json())
+        .then(data => _displayItems(data))
+        .catch(error => console.error('Unable to get items.', error));
+    let searchField = document.createElement('input');
+    searchField.setAttribute('type', 'text');
+    searchField.id = 'searchField';
+    let searchButton = document.createElement('button');
+    searchButton.innerText = 'Search';
+    searchButton.setAttribute('onclick', 'searchMembers()');
+    const pBody = document.getElementById('searchHere');
+    const button = document.createElement('button');
+    button.innerText = 'Search';
+    var searchTerm = searchField.value;
+    button.setAttribute('onclick', `searchMembers(document.getElementById('input').value)`);
+    pBody.innerHTML = '';
+    pBody.appendChild(searchField);
+    pBody.appendChild(button);
+}
+
 function searchMembers() {
     let searchTerm = document.getElementById('searchField').value;
     fetch(`${uri}/Search/${searchTerm}`)
@@ -56,7 +77,11 @@ function _displayItems(data) {
     let hr = table.insertRow();
     hr.insertCell(0).innerHTML = 'Name';
     hr.insertCell(1).innerHTML = 'Affiliation';
+    
     data.forEach(item => {
+        if (item != null && item.district == null) {
+            item.district = '';
+        }
         let tr = table.insertRow();
         tr.insertCell(0).innerHTML = item.last_name + ', ' + item.first_name;
         tr.insertCell(1).innerHTML = item.party + ' - ' + item.state + ' ' + item.district;

@@ -24,6 +24,20 @@ namespace CongressWeb.Controllers
             return members;
         }
 
+        [HttpGet("SenateMemberData")]
+        public string GetSenateMemberData()
+        {
+            //RestClient client = new RestClient("https://api.propublica.org/congress/v1/118/house/members.json");
+            //RestRequest request = new RestRequest(String.Empty, Method.Get);
+            //request.AddHeader("X-API-Key", "jSAN8y0XyCdFuAFxvxLrOMfSHOCOsNyTY7dcVh6q");
+            //var response = client.Execute(request);
+            //MemberData = response.Content;
+            var file = System.IO.File.ReadAllText(@"C:\Users\jake.wengelski\Downloads\senatemembers.json");
+            MembersDataStructure membersDataStructure = JsonConvert.DeserializeObject<MembersDataStructure>(file);
+            string members = JsonConvert.SerializeObject(membersDataStructure.results.SelectMany(n => n.members));
+            return members;
+        }
+
         [HttpGet("Search/{searchInput}")]
         public string SearchMemberData(string searchInput)
         {
