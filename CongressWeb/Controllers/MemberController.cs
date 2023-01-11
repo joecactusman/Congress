@@ -24,6 +24,15 @@ namespace CongressWeb.Controllers
             return members;
         }
 
+        [HttpGet("Search")]
+        public string SearchMemberData(string searchInput)
+        {
+            string memberList = GetMemberData();
+            List<Member> members = JsonConvert.DeserializeObject<List<Member>>(memberList);
+            List<Member> searchedMembers = members.Where(n => n.first_name.StartsWith(searchInput) || n.last_name.StartsWith(searchInput)).ToList();
+            return JsonConvert.SerializeObject(searchedMembers);
+        }
+
         [HttpGet("fuckoff")]
         public string GoFuckYourself()
         {
