@@ -1,11 +1,16 @@
-﻿const uri = 'api/members/MemberData';
+﻿const uri = 'api/members';
 let todos = [];
 
 function getItems() {
-    fetch(uri)
+    fetch(uri + '/MemberData')
         .then(response => response.json())
         .then(data => _displayItems(data))
         .catch(error => console.error('Unable to get items.', error));
+    let searchField = document.createElement('input');
+    searchField.setAttribute('type', 'text');
+    const pBody = document.getElementById('searchHere');
+    pBody.innerHTML = '';
+    pBody.appendChild(searchField);
 }
 
 function _displayItems(data) {
@@ -16,13 +21,11 @@ function _displayItems(data) {
     table.disabled = true;
     let hr = table.insertRow();
     hr.insertCell(0).innerHTML = 'Name';
-    hr.insertCell(1).innerHTML = 'State';
-    hr.insertCell(2).innerHTML = 'District';
+    hr.insertCell(1).innerHTML = 'Affiliation';
     data.forEach(item => {
         let tr = table.insertRow();
-        tr.insertCell(0).innerHTML = item.first_name + ' ' + item.last_name;
-        tr.insertCell(1).innerHTML = item.state;
-        tr.insertCell(2).innerHTML = item.district;
+        tr.insertCell(0).innerHTML = item.last_name + ', ' + item.first_name;
+        tr.insertCell(1).innerHTML = item.party + ' - ' + item.state + ' ' + item.district;
     });
     tBody.appendChild(table);
     todos = data;
