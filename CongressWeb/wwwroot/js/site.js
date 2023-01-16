@@ -27,7 +27,7 @@ function getSenateItems() {
         .then(response => response.json())
         .then(data => _displaySenateItems(data))
         .catch(error => console.error('Unable to get items.', error));
-    let searchFieldSenate = document.createElement('input');
+    let searchFieldSenate = document.createElement('inputSenate');
     searchFieldSenate.setAttribute('type', 'text');
     searchFieldSenate.id = 'searchFieldSenate';
     let searchButtonSenate = document.createElement('button');
@@ -36,8 +36,9 @@ function getSenateItems() {
     const pBody = document.getElementById('searchHereSenate');
     const buttonSenate = document.createElement('button');
     buttonSenate.innerText = 'Search';
+    buttonSenate.id = 'searchFieldSenate'
     var searchTerm = searchFieldSenate.value;
-    buttonSenate.setAttribute('onclick', `searchMembers(document.getElementById('inputSenate').value)`);
+    buttonSenate.setAttribute('onclick', `searchSenateMembers(document.getElementById('inputSenate').value)`);
     pBody.innerHTML = '';
     pBody.appendChild(searchFieldSenate);
     pBody.appendChild(buttonSenate);
@@ -48,6 +49,15 @@ function searchMembers() {
     fetch(`${uri}/Search/${searchTerm}`)
         .then(response => response.json())
         .then(data => _displayItems(data))
+        .catch(error => console.error('Unable to get items.', error));
+}
+
+function searchSenateMembers() {
+    let x = document.getElementById('searchFieldSenate');
+    let searchTerm = document.getElementById('searchFieldSenate').value;
+    fetch(`${uri}/SearchSenate/${searchTerm}`)
+        .then(response => response.json())
+        .then(data => _displaySenateItems(data))
         .catch(error => console.error('Unable to get items.', error));
 }
 
@@ -111,7 +121,7 @@ function _displaySenateItems(data) {
     table.disabled = true;
     let searchField = document.createElement('input');
     searchField.setAttribute('type', 'text');
-    searchField.id = 'searchFieldSenate';
+    searchField.id = 'searchField';
     const pBody = document.getElementById('searchHere');
     const button = document.createElement('button');
     button.innerText = 'Search';
@@ -125,7 +135,8 @@ function _displaySenateItems(data) {
     const pBodySenate = document.getElementById('searchHereSenate');
     const buttonSenate = document.createElement('button');
     buttonSenate.innerText = 'Search';
-    buttonSenate.setAttribute('onclick', `searchMembers(document.getElementById('searchFieldSenate.innerhtml'))`);
+    searchFieldSenate.id = 'searchFieldSenate'
+    buttonSenate.setAttribute('onclick', `searchSenateMembers(document.getElementById('searchFieldSenate'))`);
     pBodySenate.innerHTML = '';
     pBodySenate.appendChild(searchFieldSenate);
     pBodySenate.appendChild(buttonSenate);
