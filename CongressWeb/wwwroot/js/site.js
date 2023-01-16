@@ -27,7 +27,7 @@ function getSenateItems() {
         .then(response => response.json())
         .then(data => _displaySenateItems(data))
         .catch(error => console.error('Unable to get items.', error));
-    let searchFieldSenate = document.createElement('inputSenate');
+    let searchFieldSenate = document.createElement('input');
     searchFieldSenate.setAttribute('type', 'text');
     searchFieldSenate.id = 'searchFieldSenate';
     let searchButtonSenate = document.createElement('button');
